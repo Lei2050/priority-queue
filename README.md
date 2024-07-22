@@ -28,7 +28,7 @@ for pq.Len() > 0 {
 }
 ```
 
-struct类型
+一般类型
 ```golang
 import (
 	priorityqueue "github.com/Lei2050/priority-queue"
