@@ -40,6 +40,7 @@ func (pq *priorityQueueWrap[T]) Pop() any {
 }
 
 type PriorityQueue[T Lesser] struct {
+	zero T
 	data priorityQueueWrap[T]
 }
 
@@ -68,4 +69,11 @@ func (pq *PriorityQueue[T]) Push(x T) {
 
 func (pq *PriorityQueue[T]) Pop() T {
 	return heap.Pop(&pq.data).(T)
+}
+
+func (pq *PriorityQueue[T]) Peek() T {
+	if pq.Len() <= 0 {
+		return pq.zero
+	}
+	return pq.data[0]
 }
