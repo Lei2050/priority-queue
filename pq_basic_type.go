@@ -38,6 +38,7 @@ func (pq *basicTypePQWrap[T]) Pop() any {
 }
 
 type BasicTypePriorityQueue[T constraints.Ordered] struct {
+	zero T
 	data basicTypePQWrap[T]
 }
 
@@ -66,4 +67,11 @@ func (pq *BasicTypePriorityQueue[T]) Push(x T) {
 
 func (pq *BasicTypePriorityQueue[T]) Pop() T {
 	return heap.Pop(&pq.data).(T)
+}
+
+func (pq *BasicTypePriorityQueue[T]) Peek() T {
+	if pq.Len() <= 0 {
+		return pq.zero
+	}
+	return pq.data[0]
 }
